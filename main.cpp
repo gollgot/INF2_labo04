@@ -16,12 +16,19 @@ Compilateur : g++ <8.2.1>
 
 #include <iostream>
 
+#include "Vecteur.h"
+
 using namespace std;
 
 
 int main() {
 
+    vector<int> test {1,4,5};
+
+    Vecteur<int> monVecteur(test);
+
     cout << "bla" << endl;
+
 
     return 0;
 }
