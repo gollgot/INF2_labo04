@@ -9,9 +9,9 @@
 #include <vector>
 
 template <typename T>
-Vecteur<T>::Vecteur(size_t n): data(std::vector<T>(n)) {}
+Vecteur<T>::Vecteur(size_t n) noexcept : data(std::vector<T>(n)) {}
 
 template <typename T>
-Vecteur<T>::Vecteur(const std::vector<T>& vector): data(vector) {}
+Vecteur<T>::Vecteur(const std::vector<T>& vector) noexcept : data(vector) {}
 
 #endif //VECTEURIMPL_H
