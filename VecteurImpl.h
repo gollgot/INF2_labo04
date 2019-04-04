@@ -31,13 +31,12 @@ T Vecteur<T>::at(size_t n) const {
 
 template <typename T>
 T& Vecteur<T>::at(size_t n){
-    T val;
     try {
-        val = data.at(n);
+        T& val = data.at(n);
+        return val;
     }catch(const std::out_of_range& e){
         throw vecteur_out_of_range("n is out of range");
     }
-    return val;
 }
 
 template <typename T>
