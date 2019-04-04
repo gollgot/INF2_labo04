@@ -21,7 +21,7 @@ std::ostream& operator<< (std::ostream& os, const Vecteur<T>& rhs) noexcept {
         }
         os << rhs.at(i);
     }
-    os << "]" << std::endl;
+    os << "]";
 
     return os;
 }

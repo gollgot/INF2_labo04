@@ -19,20 +19,25 @@ Vecteur<T>::Vecteur(const std::vector<T>& vector) noexcept : data(vector) {}
 
 template <typename T>
 T Vecteur<T>::at(size_t n) const {
+    T val;
     try {
-        return data.at(n);
+        val = data.at(n);
     }catch(const std::out_of_range& e){
-
+        throw vecteur_out_of_range("n is out of range");
     }
+
+    return val;
 }
 
 template <typename T>
 T& Vecteur<T>::at(size_t n){
+    T val;
     try {
-        return data.at(n);
+        val = data.at(n);
     }catch(const std::out_of_range& e){
         throw vecteur_out_of_range("n is out of range");
     }
+    return val;
 }
 
 template <typename T>

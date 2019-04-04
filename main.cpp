@@ -26,8 +26,12 @@ int main() {
     vector<int> test {1,4,5};
 
     Vecteur<int> monVecteur(test);
+    cout << monVecteur << endl;
 
-    cout << monVecteur;
+
+    // cout << monVecteur.at(6) << endl;
+
+    
 
     return 0;
 }
