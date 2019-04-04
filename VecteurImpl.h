@@ -5,6 +5,7 @@
 #ifndef VECTEURIMPL_H
 #define VECTEURIMPL_H
 
+#include "vecteur_out_of_range.h"
 #include <iostream>
 #include <vector>
 
@@ -28,9 +29,9 @@ T Vecteur<T>::at(size_t n) const {
 template <typename T>
 T& Vecteur<T>::at(size_t n){
     try {
-        data.at(n);
+        return data.at(n);
     }catch(const std::out_of_range& e){
-
+        throw vecteur_out_of_range("n is out of range");
     }
 }
 

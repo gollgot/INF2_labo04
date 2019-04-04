@@ -5,6 +5,7 @@
 #ifndef VECTEUR_H
 #define VECTEUR_H
 
+#include <iostream>
 #include <vector>
 
 // We have to declare our Vecteur class to be able to use it as a parameter
@@ -14,7 +15,7 @@ class Vecteur;
 template <typename T>
 std::ostream& operator<< (std::ostream& os, const Vecteur<T>& rhs) noexcept {
     os << "[";
-    for(size_t i = 0; i < rhs.size(); ++i) {
+    for(std::size_t i = 0; i < rhs.size(); ++i) {
         if(i > 0) {
             os << ", ";
         }
