@@ -7,6 +7,25 @@
 
 #include <vector>
 
+// We have to declare our Vecteur class to be able to use it as a parameter
+template<typename T>
+class Vecteur;
+
+template <typename T>
+std::ostream& operator<< (std::ostream& os, const Vecteur<T>& rhs) noexcept {
+    os << "[";
+    for(size_t i = 0; i < rhs.size(); ++i) {
+        if(i > 0) {
+            os << ", ";
+        }
+        os << rhs.at(i);
+    }
+    os << "]" << std::endl;
+
+    return os;
+}
+
+
 template <typename T>
 class Vecteur {
 
@@ -18,12 +37,11 @@ public:
     T at(size_t n) const;
     // Write
     T& at(size_t n);
-    size_t size() const;
+    size_t size() const noexcept;
     void resize(size_t size);
     T somme() const;
 
-
-    friend std::ostream& operator<<(std::ostream& os, const Vecteur& rhs);
+    friend std::ostream& operator<< <T>(std::ostream& os, const Vecteur<T>& rhs) noexcept;
 
     Vecteur<T>& operator*(const T& val);
     Vecteur<T>& operator*(const Vecteur& rhs);
