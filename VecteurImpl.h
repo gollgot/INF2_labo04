@@ -5,7 +5,8 @@
 #ifndef VECTEURIMPL_H
 #define VECTEURIMPL_H
 
-#include "vecteur_out_of_range.h"
+#include "vecteurException_out_of_range.h"
+#include "vecteurException_length_error.h"
 #include <iostream>
 #include <vector>
 
@@ -23,7 +24,7 @@ T Vecteur<T>::at(size_t n) const {
     try {
         val = data.at(n);
     }catch(const std::out_of_range& e){
-        throw vecteur_out_of_range("n is out of range");
+        throw vecteurException_out_of_range("Vecteur : n is out of range");
     }
 
     return val;
@@ -35,13 +36,22 @@ T& Vecteur<T>::at(size_t n){
         T& val = data.at(n);
         return val;
     }catch(const std::out_of_range& e){
-        throw vecteur_out_of_range("n is out of range");
+        throw vecteurException_out_of_range("Vecteur : n is out of range");
     }
 }
 
 template <typename T>
 size_t Vecteur<T>::size() const noexcept {
     return data.size();
+}
+
+template <typename T>
+void Vecteur<T>::resize(size_t size) {
+    try {
+        data.resize(size);
+    } catch(const std::length_error& e) {
+        throw vecteurException_length_error("Vecteur : new size can't be negative");
+    }
 }
 
 
