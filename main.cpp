@@ -27,17 +27,24 @@ int main() {
 
     Vecteur<int> monVecteur(test);
 
-
-    monVecteur.at(0) = 19;
+    //cout << monVecteur.at(20) << endl;
+    monVecteur.at(0) = 10;
 
     cout << monVecteur << endl;
-    try {
-        monVecteur.resize(-3);
-    } catch(const vecteurException_length_error& e) {
-        cout << e.what();
-    }
 
+    //monVecteur.resize(-3);
+    monVecteur.resize(2);
 
+    cout << monVecteur << endl;
+
+    cout << monVecteur.somme() << endl;
+    vector<int> a;
+    Vecteur<int> v(a);
+    monVecteur = v;
+    cout << monVecteur << endl;
+    //cout << monVecteur.somme() << endl;
+
+    
 
     /*
     cout << "---------------" << endl;

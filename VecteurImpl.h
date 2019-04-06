@@ -7,6 +7,7 @@
 
 #include "vecteurException_out_of_range.h"
 #include "vecteurException_length_error.h"
+#include "vecteurException_invalid_argument.h"
 #include <iostream>
 #include <vector>
 
@@ -50,9 +51,22 @@ void Vecteur<T>::resize(size_t size) {
     try {
         data.resize(size);
     } catch(const std::length_error& e) {
-        throw vecteurException_length_error("Vecteur : new size can't be negative");
+        throw vecteurException_invalid_argument("Vecteur : new size can't be negative");
     }
 }
 
+template <typename T>
+T Vecteur<T>::somme() const {
+    if(!data.size()){
+        throw vecteurException_length_error("Vecteur : Impossible to sum an empty vecteur");
+    }
+
+    T sum = 0;
+    for(T val : data){
+        sum += val;
+    }
+
+    return sum;
+}
 
 #endif //VECTEURIMPL_H
