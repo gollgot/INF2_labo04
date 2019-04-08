@@ -13,8 +13,11 @@ class Matrice;
 
 template<typename T>
 std::ostream& operator<<(std::ostream& os, const Matrice<T>& rhs){
-
-    // TODO
+    os << "[";
+    for(size_t row = 0; row < rhs.size(); ++row) {
+        os << rhs.at(row);
+    }
+    os << "]";
 
     return os;
 }

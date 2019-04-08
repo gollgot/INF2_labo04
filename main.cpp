@@ -78,6 +78,7 @@ int main() {
     Matrice<int> matrice1(3,5);
 
     cout << matrice1.size() << endl;
+    cout << matrice1 << endl;
 
     return 0;
 }
