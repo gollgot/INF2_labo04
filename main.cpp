@@ -76,8 +76,12 @@ int main() {
 */
 
     Matrice<int> matrice1(3,5);
-
+    Vecteur<int> in{vector<int>{1,2,3,4,5}};
     cout << matrice1.size() << endl;
+    matrice1.at(2) = in;
+    cout << matrice1 << endl;
+
+    matrice1.at(0).at(4) = 20;
     cout << matrice1 << endl;
 
     return 0;

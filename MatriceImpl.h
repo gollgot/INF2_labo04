@@ -38,6 +38,15 @@ Vecteur<T> Matrice<T>::at(size_t n) const {
 }
 
 template<typename T>
+Vecteur<T>& Matrice<T>::at(size_t n) {
+    try {
+        return buffer.at(n);
+    }catch(const Exception_out_of_range& e) {
+        throw(Exception_out_of_range("Matrice : n is out of range"));
+    }
+}
+
+template<typename T>
 size_t Matrice<T>::size() const noexcept {
     return buffer.size();
 }
