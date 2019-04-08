@@ -27,6 +27,8 @@ public:
     Matrice(size_t rows);
     Matrice<T>(size_t rows, size_t columns);
 
+    Vecteur<T> at(size_t n) const;
+
     friend std::ostream& operator<< <T>(std::ostream& os, const Matrice<T>& rhs);
 
 private:

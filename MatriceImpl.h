@@ -26,4 +26,15 @@ Matrice<T>::Matrice(size_t rows, size_t columns):buffer(Vecteur<Vecteur<T>>(rows
     }
 }
 
+
+
+template<typename T>
+Vecteur<T> Matrice<T>::at(size_t n) const {
+    try {
+        return buffer.at(n);
+    }catch(const Exception_out_of_range& e) {
+        throw(Exception_out_of_range("Matrice : n is out of range"));
+    }
+}
+
 #endif //MATRICEIMPL_H
