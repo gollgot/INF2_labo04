@@ -31,8 +31,9 @@ template <typename T>
 class Vecteur {
 
 public:
-    Vecteur<T>(size_t n) noexcept;
-    Vecteur<T>(const std::vector<T>& vector) noexcept;
+    Vecteur() noexcept;
+    Vecteur(size_t n) noexcept;
+    Vecteur(const std::vector<T>& vector) noexcept;
 
     // Read
     T at(size_t n) const;

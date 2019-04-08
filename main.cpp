@@ -17,6 +17,7 @@ Compilateur : g++ <8.2.1>
 #include <iostream>
 #include <limits>
 #include "Vecteur.h"
+#include "Matrice.h"
 
 using namespace std;
 
@@ -73,5 +74,8 @@ int main() {
     // cout << monVecteur.at(6) << endl;
 
 */
+
+    Matrice<int> dedede(3,5);
+
     return 0;
 }

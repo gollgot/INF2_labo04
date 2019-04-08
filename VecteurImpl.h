@@ -5,12 +5,14 @@
 #ifndef VECTEURIMPL_H
 #define VECTEURIMPL_H
 
-#include "vecteurException_out_of_range.h"
-#include "vecteurException_length_error.h"
-#include "vecteurException_invalid_argument.h"
+#include "Exception_out_of_range.h"
+#include "Exception_length_error.h"
+#include "Exception_invalid_argument.h"
 #include <iostream>
 #include <vector>
 
+template <typename T>
+Vecteur<T>::Vecteur() noexcept : data(std::vector<T>(0)) {}
 
 template <typename T>
 Vecteur<T>::Vecteur(size_t n) noexcept : data(std::vector<T>(n)) {}
@@ -26,7 +28,7 @@ T Vecteur<T>::at(size_t n) const {
     try {
         val = data.at(n);
     }catch(const std::out_of_range& e){
-        throw vecteurException_out_of_range("Vecteur : n is out of range");
+        throw Exception_out_of_range("Vecteur : n is out of range");
     }
 
     return val;
@@ -38,7 +40,7 @@ T& Vecteur<T>::at(size_t n){
         T& val = data.at(n);
         return val;
     }catch(const std::out_of_range& e){
-        throw vecteurException_out_of_range("Vecteur : n is out of range");
+        throw Exception_out_of_range("Vecteur : n is out of range");
     }
 }
 
@@ -52,7 +54,7 @@ void Vecteur<T>::resize(size_t size) {
     try {
         data.resize(size);
     } catch(const std::length_error& e) {
-        throw vecteurException_invalid_argument("Vecteur : new size can't be negative");
+        throw Exception_invalid_argument("Vecteur : new size can't be negative");
     }
 }
 
@@ -60,7 +62,7 @@ template <typename T>
 T Vecteur<T>::somme() const {
     // Error if our vecteur is empty
     if(!this->size()){
-        throw vecteurException_length_error("Vecteur : Impossible to sum an empty Vecteur");
+        throw Exception_length_error("Vecteur : Impossible to sum an empty Vecteur");
     }
 
     T sum = data[0];
@@ -77,11 +79,11 @@ template<typename T>
 Vecteur<T> Vecteur<T>::operator+ (const Vecteur<T>& rhs) {
     // Error if one of the two vecteur is empty
     if(!this->size() || !rhs.size()){
-        throw vecteurException_length_error("Vecteur : Impossible to sum those vecteur if one or more is empty");
+        throw Exception_length_error("Vecteur : Impossible to sum those vecteur if one or more is empty");
     }
     // Error if both vecteur don't have same size
     if(this->size() != rhs.size()){
-        throw vecteurException_invalid_argument("Vecteur : Both vecteur must have the same size");
+        throw Exception_invalid_argument("Vecteur : Both vecteur must have the same size");
     }
 
     Vecteur res(size());
@@ -96,11 +98,11 @@ template<typename T>
 Vecteur<T> Vecteur<T>::operator- (const Vecteur<T>& rhs) {
     // Error if one of the two vecteur is empty
     if(!this->size() || !rhs.size()){
-        throw vecteurException_length_error("Vecteur : Impossible to sum those vecteur if one or more is empty");
+        throw Exception_length_error("Vecteur : Impossible to sum those vecteur if one or more is empty");
     }
     // Error if both vecteur don't have same size
     if(this->size() != rhs.size()){
-        throw vecteurException_invalid_argument("Vecteur : Both vecteur must have the same size");
+        throw Exception_invalid_argument("Vecteur : Both vecteur must have the same size");
     }
 
     Vecteur res(size());
