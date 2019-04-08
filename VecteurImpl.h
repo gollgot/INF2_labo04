@@ -19,6 +19,7 @@ template <typename T>
 Vecteur<T>::Vecteur(const std::vector<T>& vector) noexcept : data(vector) {}
 
 
+
 template <typename T>
 T Vecteur<T>::at(size_t n) const {
     T val;
@@ -57,8 +58,9 @@ void Vecteur<T>::resize(size_t size) {
 
 template <typename T>
 T Vecteur<T>::somme() const {
-    if(data.empty()){
-        throw vecteurException_length_error("Vecteur : Impossible to sum an empty vecteur");
+    // Error if our vecteur is empty
+    if(!this->size()){
+        throw vecteurException_length_error("Vecteur : Impossible to sum an empty Vecteur");
     }
 
     T sum = data[0];
@@ -67,6 +69,46 @@ T Vecteur<T>::somme() const {
     }
 
     return sum;
+}
+
+
+
+template<typename T>
+Vecteur<T> Vecteur<T>::operator+ (const Vecteur<T>& rhs) {
+    // Error if one of the two vecteur is empty
+    if(!this->size() || !rhs.size()){
+        throw vecteurException_length_error("Vecteur : Impossible to sum those vecteur if one or more is empty");
+    }
+    // Error if both vecteur don't have same size
+    if(this->size() != rhs.size()){
+        throw vecteurException_invalid_argument("Vecteur : Both vecteur must have the same size");
+    }
+
+    Vecteur res(size());
+    for(size_t i = 0; i < data.size(); ++i) {
+        res.at(i) = this->at(i) + rhs.at(i);
+    }
+
+    return res;
+}
+
+template<typename T>
+Vecteur<T> Vecteur<T>::operator- (const Vecteur<T>& rhs) {
+    // Error if one of the two vecteur is empty
+    if(!this->size() || !rhs.size()){
+        throw vecteurException_length_error("Vecteur : Impossible to sum those vecteur if one or more is empty");
+    }
+    // Error if both vecteur don't have same size
+    if(this->size() != rhs.size()){
+        throw vecteurException_invalid_argument("Vecteur : Both vecteur must have the same size");
+    }
+
+    Vecteur res(size());
+    for(size_t i = 0; i < data.size(); ++i) {
+        res.at(i) = this->at(i) - rhs.at(i);
+    }
+
+    return res;
 }
 
 #endif //VECTEURIMPL_H

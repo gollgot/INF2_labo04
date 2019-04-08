@@ -45,6 +45,13 @@ int main() {
     //cout << monVecteur.somme() << endl;
 
 
+    vector<int> test1 {3,5,6};
+    vector<int> test2 {4,5,6};
+    Vecteur<int> monVecteur1(test1);
+    Vecteur<int> monVecteur2(test2);
+    cout << (monVecteur1 + monVecteur2) << endl;
+    cout << (monVecteur1 - monVecteur2) << endl;
+
     /*
     cout << "---------------" << endl;
 

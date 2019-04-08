@@ -45,9 +45,9 @@ public:
     friend std::ostream& operator<< <T>(std::ostream& os, const Vecteur<T>& rhs) noexcept;
 
     Vecteur<T>& operator*(const T& val);
-    Vecteur<T>& operator*(const Vecteur& rhs);
-    Vecteur<T>& operator+(const Vecteur& rhs);
-    Vecteur<T>& operator-(const Vecteur& rhs);
+    Vecteur<T> operator*(const Vecteur<T>& rhs);
+    Vecteur<T> operator+(const Vecteur<T>& rhs);
+    Vecteur<T> operator-(const Vecteur<T>& rhs);
 
 
 private:
