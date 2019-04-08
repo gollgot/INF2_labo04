@@ -15,7 +15,7 @@ Compilateur : g++ <8.2.1>
 
 
 #include <iostream>
-
+#include <limits>
 #include "Vecteur.h"
 
 using namespace std;
@@ -44,7 +44,6 @@ int main() {
     cout << monVecteur << endl;
     //cout << monVecteur.somme() << endl;
 
-    
 
     /*
     cout << "---------------" << endl;
@@ -67,7 +66,5 @@ int main() {
     // cout << monVecteur.at(6) << endl;
 
 */
-
-
     return 0;
 }

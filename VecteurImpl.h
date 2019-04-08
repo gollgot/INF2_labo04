@@ -57,13 +57,13 @@ void Vecteur<T>::resize(size_t size) {
 
 template <typename T>
 T Vecteur<T>::somme() const {
-    if(!data.size()){
+    if(data.empty()){
         throw vecteurException_length_error("Vecteur : Impossible to sum an empty vecteur");
     }
 
-    T sum = 0;
-    for(T val : data){
-        sum += val;
+    T sum = data[0];
+    for(size_t i = 1; i < data.size(); ++i){
+        sum += data.at(i);
     }
 
     return sum;
