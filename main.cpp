@@ -77,5 +77,7 @@ int main() {
 
     Matrice<int> dedede(3,5);
 
+    cout << dedede;
+
     return 0;
 }
