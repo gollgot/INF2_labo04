@@ -37,4 +37,9 @@ Vecteur<T> Matrice<T>::at(size_t n) const {
     }
 }
 
+template<typename T>
+size_t Matrice<T>::size() const noexcept {
+    return buffer.size();
+}
+
 #endif //MATRICEIMPL_H

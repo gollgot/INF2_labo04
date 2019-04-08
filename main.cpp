@@ -75,9 +75,9 @@ int main() {
 
 */
 
-    Matrice<int> dedede(3,5);
+    Matrice<int> matrice1(3,5);
 
-    cout << dedede;
+    cout << matrice1.size() << endl;
 
     return 0;
 }
