@@ -89,12 +89,14 @@ int main() {
     matrice1.resize(6);
     cout << matrice1 << endl;
 
-    matrice1.resize(2, 2);
+    matrice1.resize(2, 3);
     cout << matrice1 << endl;
 
     cout << "Matrice vide ? " << boolalpha << matrice1.estVide() << noboolalpha << endl;
 
     cout << "Matrice carree ? " << boolalpha << matrice1.estCarree() << noboolalpha << endl;
+
+    cout << "Matrice reguliere ? " << boolalpha << matrice1.estReguliere() << noboolalpha << endl;
 
     return 0;
 }

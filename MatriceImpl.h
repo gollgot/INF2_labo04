@@ -117,4 +117,21 @@ bool Matrice<T>::estCarree() const noexcept {
     return isSquareMatrix;
 }
 
+template<typename T>
+bool Matrice<T>::estReguliere() const noexcept {
+    bool isRegularMatrix = true;
+
+    if(!this->estVide()) {
+        size_t firstRowSize = buffer.at(0).size();
+        for (size_t row = 1; row < this->size(); ++row) {
+            if(firstRowSize != buffer.at(row).size()){
+                isRegularMatrix = false;
+                break;
+            }
+        }
+    }
+
+    return isRegularMatrix;
+}
+
 #endif //MATRICEIMPL_H
