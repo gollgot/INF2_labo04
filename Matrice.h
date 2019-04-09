@@ -38,6 +38,7 @@ public:
     bool estVide() const noexcept;
     bool estCarree() const noexcept;
     bool estReguliere() const noexcept;
+    Vecteur<T> sommeLigne() const;
 
     friend std::ostream& operator<< <T>(std::ostream& os, const Matrice<T>& rhs);
 

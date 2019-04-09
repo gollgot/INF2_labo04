@@ -134,4 +134,26 @@ bool Matrice<T>::estReguliere() const noexcept {
     return isRegularMatrix;
 }
 
+template<typename T>
+Vecteur<T> Matrice<T>::sommeLigne() const {
+    if(this->estVide()) {
+        throw Exception_length_error("Matrice : Impossible to sum an empty Matrice");
+    }
+    if(!this->estReguliere()){
+        throw Exception_length_error("Matrice : Impossible to sum rows of an irregular Matrice");
+    }
+
+    try {
+
+        Vecteur<T> sum(this->size());
+        for (size_t row = 0; row < this->size(); ++row) {
+            sum.at(row) = this->at(row).somme();
+        }
+        return sum;
+
+    }catch(const Exception_length_error& e){
+        throw Exception_length_error("Matrice : Impossible to sum an empty row");
+    }
+}
+
 #endif //MATRICEIMPL_H

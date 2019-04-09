@@ -89,7 +89,9 @@ int main() {
     matrice1.resize(6);
     cout << matrice1 << endl;
 
-    matrice1.resize(2, 3);
+    matrice1.resize(2, 0);
+    matrice1.at(0) = Vecteur<int> {vector<int>{2,3,4}};
+    matrice1.at(1) = Vecteur<int> {vector<int>{1,5,2}};
     cout << matrice1 << endl;
 
     cout << "Matrice vide ? " << boolalpha << matrice1.estVide() << noboolalpha << endl;
@@ -97,6 +99,8 @@ int main() {
     cout << "Matrice carree ? " << boolalpha << matrice1.estCarree() << noboolalpha << endl;
 
     cout << "Matrice reguliere ? " << boolalpha << matrice1.estReguliere() << noboolalpha << endl;
+
+    cout << matrice1.sommeLigne() << endl;
 
     return 0;
 }
