@@ -64,9 +64,9 @@ T Vecteur<T>::somme() const {
         throw Exception_length_error("Vecteur : Impossible to sum an empty Vecteur");
     }
 
-    T sum = data[0];
+    T sum = this->at(0);
     for(size_t i = 1; i < data.size(); ++i){
-        sum += data.at(i);
+        sum += this->at(i);
     }
 
     return sum;

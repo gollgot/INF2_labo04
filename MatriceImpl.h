@@ -19,7 +19,7 @@ Matrice<T>::Matrice(size_t rows, size_t columns):buffer(Vecteur<Vecteur<T>>(rows
     try {
         // We fill our buffer with empty rows, now we resize all rows with columns nb
         for (size_t i = 0; i < rows; ++i) {
-            buffer.at(i).resize(columns);
+            this->at(i).resize(columns);
         }
     }catch(const Exception_invalid_argument& e){
         throw Exception_invalid_argument("Matrice : Impossible to create a matrice with negative column size");
@@ -75,7 +75,7 @@ void Matrice<T>::resize(size_t l, size_t c) {
 
         // Resize columns
         for(size_t row = 0; row < this->size(); ++row){
-            buffer.at(row).resize(c);
+            this->at(row).resize(c);
         }
     } catch(const std::length_error& e) {
         throw Exception_length_error("Matrice : size can't be greater than the maximum number of elements the vecteur can hold");
@@ -90,7 +90,7 @@ bool Matrice<T>::estVide() const noexcept {
     bool columnsEmpty = true;
 
     for(size_t row = 0; row < this->size(); ++row) {
-        if(buffer.at(row).size() > 0){
+        if(this->at(row).size() > 0){
             columnsEmpty = false;
         }
     }
@@ -106,7 +106,7 @@ bool Matrice<T>::estCarree() const noexcept {
 
     if(!this->estVide()) {
         for (size_t row = 0; row < rowsSize; ++row) {
-            columnSize = buffer.at(row).size();
+            columnSize = this->at(row).size();
             if(columnSize != rowsSize){
                 isSquareMatrix = false;
                 break;
@@ -122,9 +122,9 @@ bool Matrice<T>::estReguliere() const noexcept {
     bool isRegularMatrix = true;
 
     if(!this->estVide()) {
-        size_t firstRowSize = buffer.at(0).size();
+        size_t firstRowSize = this->at(0).size();
         for (size_t row = 1; row < this->size(); ++row) {
-            if(firstRowSize != buffer.at(row).size()){
+            if(firstRowSize != this->at(row).size()){
                 isRegularMatrix = false;
                 break;
             }
