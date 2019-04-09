@@ -102,5 +102,7 @@ int main() {
 
     cout << matrice1.sommeLigne() << endl;
 
+    cout << matrice1.sommeColonne() << endl;
+
     return 0;
 }

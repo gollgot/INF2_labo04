@@ -137,7 +137,7 @@ bool Matrice<T>::estReguliere() const noexcept {
 template<typename T>
 Vecteur<T> Matrice<T>::sommeLigne() const {
     if(this->estVide()) {
-        throw Exception_length_error("Matrice : Impossible to sum an empty Matrice");
+        throw Exception_length_error("Matrice : Impossible to sum rows of an empty Matrice");
     }
     if(!this->estReguliere()){
         throw Exception_length_error("Matrice : Impossible to sum rows of an irregular Matrice");
@@ -153,6 +153,30 @@ Vecteur<T> Matrice<T>::sommeLigne() const {
 
     }catch(const Exception_length_error& e){
         throw Exception_length_error("Matrice : Impossible to sum an empty row");
+    }
+}
+
+template<typename T>
+Vecteur<T> Matrice<T>::sommeColonne() const {
+    if(this->estVide()) {
+        throw Exception_length_error("Matrice : Impossible to sum columns of an empty Matrice");
+    }
+    if(!this->estReguliere()){
+        throw Exception_length_error("Matrice : Impossible to sum columns of an irregular Matrice");
+    }
+
+    try {
+
+        Vecteur<T> sum(this->at(0).size());
+        for (size_t row = 0; row < this->size(); ++row) {
+            for(size_t column = 0; column < this->at(row).size(); ++column){
+                sum.at(column) = sum.at(column) + this->at(row).at(column);
+            }
+        }
+        return sum;
+
+    }catch(const Exception_length_error& e){
+        throw Exception_length_error("Matrice : Impossible to sum an empty column");
     }
 }
 

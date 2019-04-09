@@ -39,6 +39,7 @@ public:
     bool estCarree() const noexcept;
     bool estReguliere() const noexcept;
     Vecteur<T> sommeLigne() const;
+    Vecteur<T> sommeColonne() const;
 
     friend std::ostream& operator<< <T>(std::ostream& os, const Matrice<T>& rhs);
 
