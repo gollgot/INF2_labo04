@@ -50,7 +50,7 @@ void Vecteur<T>::resize(size_t size) {
     try {
         data.resize(size);
     } catch(const std::length_error& e) {
-        throw Exception_invalid_argument("Vecteur : new size can't be negative");
+        throw Exception_length_error("Vecteur : size can't be greater than the maximum number of elements the vecteur can hold");
     }
 }
 
