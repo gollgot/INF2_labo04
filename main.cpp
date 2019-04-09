@@ -89,7 +89,7 @@ int main() {
     matrice1.resize(6);
     cout << matrice1 << endl;
 
-    matrice1.resize(3, 3);
+    matrice1.resize(2, 2);
     cout << matrice1 << endl;
 
     cout << "Matrice vide ? " << boolalpha << matrice1.estVide() << noboolalpha << endl;

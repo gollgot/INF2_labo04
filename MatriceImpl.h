@@ -65,6 +65,10 @@ void Matrice<T>::resize(size_t l) {
 
 template<typename T>
 void Matrice<T>::resize(size_t l, size_t c) {
+    if((l == 0) and (c > l)){
+        throw Exception_invalid_argument("Matrice : If rows size is 0, the columns size can't be greater than 0");
+    }
+
     try {
         // Resize rows
         buffer.resize(l);
@@ -105,6 +109,7 @@ bool Matrice<T>::estCarree() const noexcept {
             columnSize = buffer.at(row).size();
             if(columnSize != rowsSize){
                 isSquareMatrix = false;
+                break;
             }
         }
     }
