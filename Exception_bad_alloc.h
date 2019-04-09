@@ -13,7 +13,7 @@ public:
     explicit Exception_bad_alloc(const std::string& what): exception(), whatMsg(what){};
     explicit Exception_bad_alloc(const char* what): exception(), whatMsg(what){};
 
-    std::string what2() const {
+    std::string _what() const {
         return whatMsg;
     }
 

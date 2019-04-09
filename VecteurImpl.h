@@ -8,17 +8,18 @@
 #include "Exception_out_of_range.h"
 #include "Exception_length_error.h"
 #include "Exception_invalid_argument.h"
+#include "Exception_bad_alloc.h"
 #include <iostream>
 #include <vector>
 
 template <typename T>
-Vecteur<T>::Vecteur() noexcept : data(std::vector<T>(0)) {}
+Vecteur<T>::Vecteur() : data(std::vector<T>(0)) {}
 
 template <typename T>
-Vecteur<T>::Vecteur(size_t n) noexcept : data(std::vector<T>(n)) {}
+Vecteur<T>::Vecteur(size_t n) : data(std::vector<T>(n)) {}
 
 template <typename T>
-Vecteur<T>::Vecteur(const std::vector<T>& vector) noexcept : data(vector) {}
+Vecteur<T>::Vecteur(const std::vector<T>& vector) : data(vector) {}
 
 
 
@@ -52,7 +53,7 @@ void Vecteur<T>::resize(size_t size) {
     } catch(const std::length_error& e) {
         throw Exception_length_error("Vecteur : size can't be greater than the maximum number of elements the vecteur can hold");
     } catch(const std::bad_alloc& e) {
-
+        throw Exception_bad_alloc("Vecteur : Impossible to allocate the memory ask");
     }
 }
 
