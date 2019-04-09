@@ -180,4 +180,21 @@ Vecteur<T> Matrice<T>::sommeColonne() const {
     }
 }
 
+template<typename T>
+T Matrice<T>::sommeDiagonaleGD() const {
+    if(this->estVide()){
+        throw Exception_length_error("Matrice : Impossible to sum the diagonal of an empty Matrice");
+    }
+    if(!this->estCarree()){
+        throw Exception_length_error("Matrice : Impossible to sum the diagonal of a no square Matrice");
+    }
+
+    T sum = this->at(0).at(0);
+    for(size_t i = 1; i < this->size(); ++i){
+        sum += this->at(i).at(i);
+    }
+
+    return sum;
+}
+
 #endif //MATRICEIMPL_H
