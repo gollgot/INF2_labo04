@@ -54,7 +54,7 @@ size_t Matrice<T>::size() const noexcept {
 template<typename T>
 void Matrice<T>::resize(size_t l) {
     try {
-        // Resize rows 
+        // Resize rows
         buffer.resize(l);
     } catch(const std::length_error& e) {
         throw Exception_length_error("Matrice : size can't be greater than the maximum number of elements the vecteur can hold");
@@ -78,6 +78,20 @@ void Matrice<T>::resize(size_t l, size_t c) {
     } catch(const std::bad_alloc& e) {
         throw Exception_bad_alloc("Matrice : Impossible to allocate the memory ask");
     }
+}
+
+template<typename T>
+bool Matrice<T>::estVide() const noexcept {
+    bool rowsEmpty = (bool)!this->size();
+    bool columnsEmpty = true;
+
+    for(size_t row = 0; row < this->size(); ++row) {
+        if(buffer.at(row).size() > 0){
+            columnsEmpty = false;
+        }
+    }
+
+    return (rowsEmpty && columnsEmpty);
 }
 
 #endif //MATRICEIMPL_H

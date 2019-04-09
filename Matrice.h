@@ -35,6 +35,7 @@ public:
     size_t size() const noexcept;
     void resize(size_t l);
     void resize(size_t l, size_t c);
+    bool estVide() const noexcept;
 
     friend std::ostream& operator<< <T>(std::ostream& os, const Matrice<T>& rhs);
 
