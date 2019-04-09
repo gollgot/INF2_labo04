@@ -33,6 +33,7 @@ public:
     Vecteur<T> at(size_t n) const;
     Vecteur<T>& at(size_t n);
     size_t size() const noexcept;
+    void resize(size_t l);
 
     friend std::ostream& operator<< <T>(std::ostream& os, const Matrice<T>& rhs);
 

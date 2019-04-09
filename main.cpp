@@ -86,5 +86,8 @@ int main() {
     matrice1.at(0).at(4) = 20;
     cout << matrice1 << endl;
 
+    matrice1.resize(6);
+    cout << matrice1 << endl;
+
     return 0;
 }

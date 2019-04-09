@@ -13,7 +13,7 @@
 #include <vector>
 
 template <typename T>
-Vecteur<T>::Vecteur() : data(std::vector<T>(0)) {}
+Vecteur<T>::Vecteur() : data(std::vector<T>(0)) {};
 
 template <typename T>
 Vecteur<T>::Vecteur(size_t n) : data(std::vector<T>(n)) {}

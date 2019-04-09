@@ -51,4 +51,15 @@ size_t Matrice<T>::size() const noexcept {
     return buffer.size();
 }
 
+template<typename T>
+void Matrice<T>::resize(size_t l) {
+    try {
+        buffer.resize(l);
+    } catch(const std::length_error& e) {
+        throw Exception_length_error("Vecteur : size can't be greater than the maximum number of elements the vecteur can hold");
+    } catch(const std::bad_alloc& e) {
+        throw Exception_bad_alloc("Vecteur : Impossible to allocate the memory ask");
+    }
+}
+
 #endif //MATRICEIMPL_H
