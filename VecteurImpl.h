@@ -51,6 +51,8 @@ void Vecteur<T>::resize(size_t size) {
         data.resize(size);
     } catch(const std::length_error& e) {
         throw Exception_length_error("Vecteur : size can't be greater than the maximum number of elements the vecteur can hold");
+    } catch(const std::bad_alloc& e) {
+
     }
 }
 
@@ -69,7 +71,36 @@ T Vecteur<T>::somme() const {
     return sum;
 }
 
+template <typename T>
+Vecteur<T>& Vecteur<T>::operator*(const T& val){
+    if(!this->size())
+        throw Exception_length_error("Vecteur : impossible to multiply an empty vecteur with a value");
 
+    for(size_t i = 0; i< this->size(); ++i) {
+        this->at(i) = this->at(i)*val;
+    }
+
+    return *this;
+}
+
+template <typename T>
+Vecteur<T> Vecteur<T>::operator*(const Vecteur& rhs){
+
+    Vecteur<T> result(this->size());
+
+    if(!this->size() || !rhs.size())
+        throw Exception_length_error("Vecteur : impossible to multiply an empty vecteur with a another vecteur.");
+
+    if(this->size() != rhs.size())
+        throw Exception_invalid_argument("Vecteur : impossible to multiply vecteurs of different size.");
+
+    for(size_t i = 0; i< this->size(); ++i) {
+        result.at(i) = this->at(i) * rhs.at(i);
+    }
+
+    return result;
+
+}
 
 template<typename T>
 Vecteur<T> Vecteur<T>::operator+ (const Vecteur<T>& rhs) {

@@ -52,6 +52,8 @@ int main() {
     Vecteur<int> monVecteur2(test2);
     cout << (monVecteur1 + monVecteur2) << endl;
     cout << (monVecteur1 - monVecteur2) << endl;
+    cout << monVecteur1 * 2 << endl;
+    cout << monVecteur1 * monVecteur2 << endl;
 
     /*
     cout << "---------------" << endl;
