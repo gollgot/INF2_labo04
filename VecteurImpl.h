@@ -65,7 +65,7 @@ T Vecteur<T>::somme() const {
     }
 
     T sum = this->at(0);
-    for(size_t i = 1; i < data.size(); ++i){
+    for(size_t i = 1; i < this->size(); ++i){
         sum += this->at(i);
     }
 
@@ -115,7 +115,7 @@ Vecteur<T> Vecteur<T>::operator+ (const Vecteur<T>& rhs) {
     }
 
     Vecteur res(size());
-    for(size_t i = 0; i < data.size(); ++i) {
+    for(size_t i = 0; i < this->size(); ++i) {
         res.at(i) = this->at(i) + rhs.at(i);
     }
 
@@ -134,7 +134,7 @@ Vecteur<T> Vecteur<T>::operator- (const Vecteur<T>& rhs) {
     }
 
     Vecteur res(size());
-    for(size_t i = 0; i < data.size(); ++i) {
+    for(size_t i = 0; i < this->size(); ++i) {
         res.at(i) = this->at(i) - rhs.at(i);
     }
 
