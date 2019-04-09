@@ -94,5 +94,7 @@ int main() {
 
     cout << "Matrice vide ? " << boolalpha << matrice1.estVide() << noboolalpha << endl;
 
+    cout << "Matrice carree ? " << boolalpha << matrice1.estCarree() << noboolalpha << endl;
+
     return 0;
 }

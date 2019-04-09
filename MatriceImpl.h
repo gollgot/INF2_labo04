@@ -94,4 +94,22 @@ bool Matrice<T>::estVide() const noexcept {
     return (rowsEmpty && columnsEmpty);
 }
 
+template<typename T>
+bool Matrice<T>::estCarree() const noexcept {
+    bool isSquareMatrix = true;
+    size_t rowsSize = this->size();
+    size_t columnSize = 0;
+
+    if(!this->estVide()) {
+        for (size_t row = 0; row < rowsSize; ++row) {
+            columnSize = buffer.at(row).size();
+            if(columnSize != rowsSize){
+                isSquareMatrix = false;
+            }
+        }
+    }
+
+    return isSquareMatrix;
+}
+
 #endif //MATRICEIMPL_H
