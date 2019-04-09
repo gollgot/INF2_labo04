@@ -54,11 +54,29 @@ size_t Matrice<T>::size() const noexcept {
 template<typename T>
 void Matrice<T>::resize(size_t l) {
     try {
+        // Resize rows 
         buffer.resize(l);
     } catch(const std::length_error& e) {
-        throw Exception_length_error("Vecteur : size can't be greater than the maximum number of elements the vecteur can hold");
+        throw Exception_length_error("Matrice : size can't be greater than the maximum number of elements the vecteur can hold");
     } catch(const std::bad_alloc& e) {
-        throw Exception_bad_alloc("Vecteur : Impossible to allocate the memory ask");
+        throw Exception_bad_alloc("Matrice : Impossible to allocate the memory ask");
+    }
+}
+
+template<typename T>
+void Matrice<T>::resize(size_t l, size_t c) {
+    try {
+        // Resize rows
+        buffer.resize(l);
+
+        // Resize columns
+        for(size_t row = 0; row < this->size(); ++row){
+            buffer.at(row).resize(c);
+        }
+    } catch(const std::length_error& e) {
+        throw Exception_length_error("Matrice : size can't be greater than the maximum number of elements the vecteur can hold");
+    } catch(const std::bad_alloc& e) {
+        throw Exception_bad_alloc("Matrice : Impossible to allocate the memory ask");
     }
 }
 
