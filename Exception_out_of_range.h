@@ -8,11 +8,11 @@
 #include <stdexcept>
 #include <string>
 
-class Exception_out_of_range : public std::logic_error{
+class Exception_out_of_range : public std::out_of_range{
 
 public:
-    explicit Exception_out_of_range(const std::string& what): logic_error(what){};
-    explicit Exception_out_of_range(const char* what): logic_error(what){};
+    explicit Exception_out_of_range(const std::string& what): out_of_range(what){};
+    explicit Exception_out_of_range(const char* what): out_of_range(what){};
 };
 
 #endif //VECTEUR_OUT_OF_RANGE_H

@@ -8,11 +8,11 @@
 #include <stdexcept>
 #include <string>
 
-class Exception_invalid_argument : public std::logic_error{
+class Exception_invalid_argument : public std::invalid_argument{
 
 public:
-    explicit Exception_invalid_argument(const std::string& what): logic_error(what){};
-    explicit Exception_invalid_argument(const char* what): logic_error(what){};
+    explicit Exception_invalid_argument(const std::string& what): invalid_argument(what){};
+    explicit Exception_invalid_argument(const char* what): invalid_argument(what){};
 };
 
 #endif //VECTEUREXCEPTION_INVALID_ARGUMENT_H
