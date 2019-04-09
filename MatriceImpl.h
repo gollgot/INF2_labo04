@@ -183,15 +183,34 @@ Vecteur<T> Matrice<T>::sommeColonne() const {
 template<typename T>
 T Matrice<T>::sommeDiagonaleGD() const {
     if(this->estVide()){
-        throw Exception_length_error("Matrice : Impossible to sum the diagonal of an empty Matrice");
+        throw Exception_length_error("Matrice : Impossible to sum the left to right diagonal of an empty Matrice");
     }
     if(!this->estCarree()){
-        throw Exception_length_error("Matrice : Impossible to sum the diagonal of a no square Matrice");
+        throw Exception_length_error("Matrice : Impossible to sum the left to right diagonal of a no square Matrice");
     }
 
     T sum = this->at(0).at(0);
     for(size_t i = 1; i < this->size(); ++i){
         sum += this->at(i).at(i);
+    }
+
+    return sum;
+}
+
+template<typename T>
+T Matrice<T>::sommeDiagonaleDG() const {
+    if(this->estVide()){
+        throw Exception_length_error("Matrice : Impossible to sum the right to left diagonal of an empty Matrice");
+    }
+    if(!this->estCarree()){
+        throw Exception_length_error("Matrice : Impossible to sum the right to left diagonal of a no square Matrice");
+    }
+
+    const size_t DIMENSION = this->size();
+    T sum = this->at(0).at(DIMENSION - 1);
+
+    for(size_t row = 1; row < DIMENSION; ++row){
+        sum += this->at(row).at(DIMENSION - row - 1);
     }
 
     return sum;

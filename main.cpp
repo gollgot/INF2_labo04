@@ -107,6 +107,8 @@ int main() {
 
     cout << matrice1.sommeDiagonaleGD() << endl;
 
+    cout << matrice1.sommeDiagonaleDG() << endl;
+
 
     return 0;
 }
