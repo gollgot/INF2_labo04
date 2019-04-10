@@ -8,6 +8,10 @@
 #include "Vecteur.h"
 #include "Exception_invalid_argument.h"
 
+
+
+
+
 template<typename T>
 Matrice<T>::Matrice():buffer(Vecteur<Vecteur<T>>(0)) {}
 

@@ -9,8 +9,10 @@
 #include "Exception_length_error.h"
 #include "Exception_invalid_argument.h"
 #include "Exception_bad_alloc.h"
+#include "overflowManagement.h"
 #include <iostream>
 #include <vector>
+
 
 template <typename T>
 Vecteur<T>::Vecteur() : data(std::vector<T>(0)) {};
@@ -66,6 +68,9 @@ T Vecteur<T>::somme() const {
 
     T sum = this->at(0);
     for(size_t i = 1; i < this->size(); ++i){
+        if(isAnAddOverflow(sum, this->at(i))) {
+            throw Exception_overflow_error("Vecteur : Overflow detected in the computed result");
+        }
         sum += this->at(i);
     }
 
@@ -78,6 +83,9 @@ Vecteur<T>& Vecteur<T>::operator*(const T& val){
         throw Exception_length_error("Vecteur : impossible to multiply an empty vecteur with a value");
 
     for(size_t i = 0; i< this->size(); ++i) {
+        if(isAMultiplyOverflow(this->at(i), val)) {
+            throw Exception_overflow_error("Vecteur : Overflow detected in the computed result");
+        }
         this->at(i) = this->at(i)*val;
     }
 
@@ -96,6 +104,9 @@ Vecteur<T> Vecteur<T>::operator*(const Vecteur& rhs){
         throw Exception_invalid_argument("Vecteur : impossible to multiply vecteurs of different size.");
 
     for(size_t i = 0; i< this->size(); ++i) {
+        if(isAMultiplyOverflow(this->at(i), rhs.at(i))) {
+            throw Exception_overflow_error("Vecteur : Overflow detected in the computed result");
+        }
         result.at(i) = this->at(i) * rhs.at(i);
     }
 
@@ -116,6 +127,9 @@ Vecteur<T> Vecteur<T>::operator+ (const Vecteur<T>& rhs) {
 
     Vecteur res(size());
     for(size_t i = 0; i < this->size(); ++i) {
+        if(isAnAddOverflow(this->at(i), rhs.at(i))){
+            throw Exception_overflow_error("Vecteur : Overflow detected in the computed result");
+        }
         res.at(i) = this->at(i) + rhs.at(i);
     }
 
@@ -135,6 +149,9 @@ Vecteur<T> Vecteur<T>::operator- (const Vecteur<T>& rhs) {
 
     Vecteur res(size());
     for(size_t i = 0; i < this->size(); ++i) {
+        if(isASubOverflow(this->at(i), rhs.at(i))) {
+            throw Exception_overflow_error("Vecteur : Overflow detected in the computed result");
+        }
         res.at(i) = this->at(i) - rhs.at(i);
     }
 
