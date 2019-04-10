@@ -191,4 +191,85 @@ T Matrice<T>::sommeDiagonaleDG() const {
     return sum;
 }
 
+template <typename T>
+Matrice<T> Matrice<T>::operator*(const T& valeur) const {
+
+    // + exception debordement
+    if(estVide()){
+        throw Exception_length_error("Matrice : Impossible to multiply elements of an empty matrice with a value");
+    }
+
+    Matrice<T> result = *this;
+    for(size_t i = 0; i< this->size(); ++i){
+        for(size_t j = 0; j < this->at(i).size(); ++j){
+            result.at(i).at(j) *= valeur;
+        }
+    }
+
+    return result;
+
+}
+
+template <typename T>
+Matrice<T> Matrice<T>::operator*(const Matrice<T>& rhs) const {
+
+    // + exception debordement
+    if(estVide() || rhs.estVide()){
+        throw Exception_length_error("Matrice : Impossible to multiply an empty matrice with another matrice");
+    }
+
+    if(this->size()!= rhs.size()){
+        throw Exception_invalid_argument("Matrice : both matrices must have the same numbers of rows to may multiply each other");
+    }
+
+    Matrice<T> result = *this;
+
+    for(size_t i = 0; i < this->size(); ++i){
+
+        if(this->at(i).size() != rhs.at(i).size() ){
+            throw Exception_invalid_argument("Matrice : each rows of matrices being multiplied must have the same number of elements (columns)");
+        }
+
+        for(size_t j = 0; j < this->at(i).size(); ++j){
+
+            result.at(i).at(j) *= rhs.at(i).at(j);
+        }
+    }
+
+
+    return result;
+
+}
+
+template <typename T>
+Matrice<T> Matrice<T>::operator+(const Matrice<T>& rhs) const {
+
+    // + exception debordement
+    if(estVide() || rhs.estVide()){
+        throw Exception_length_error("Matrice : Impossible to add an empty matrice with another matrice");
+    }
+
+    if(this->size()!= rhs.size()){
+        throw Exception_invalid_argument("Matrice : both matrices must have the same numbers of rows to may operate an addition");
+    }
+
+    Matrice<T> result = *this;
+
+    for(size_t i = 0; i < this->size(); ++i){
+
+        if(this->at(i).size() != rhs.at(i).size() ){
+            throw Exception_invalid_argument("Matrice : each rows of matrices being added must have the same number of elements (columns)");
+        }
+
+        for(size_t j = 0; j < this->at(i).size(); ++j){
+
+            result.at(i).at(j) += rhs.at(i).at(j);
+        }
+    }
+
+
+    return result;
+
+}
+
 #endif //MATRICEIMPL_H

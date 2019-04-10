@@ -42,6 +42,9 @@ public:
     Vecteur<T> sommeColonne() const;
     T sommeDiagonaleGD() const;
     T sommeDiagonaleDG() const;
+    Matrice<T> operator*(const T& valeur) const;
+    Matrice<T> operator*(const Matrice<T>& rhs) const;
+    Matrice<T> operator+(const Matrice<T>& rhs) const;
 
     friend std::ostream& operator<< <T>(std::ostream& os, const Matrice<T>& rhs);
 

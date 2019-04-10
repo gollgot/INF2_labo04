@@ -21,7 +21,6 @@ Compilateur : g++ <8.2.1>
 
 using namespace std;
 
-
 int main() {
 
     vector<int> test {1,4,5};
@@ -92,7 +91,7 @@ int main() {
     matrice1.resize(3, 3);
     matrice1.at(0) = Vecteur<int> {vector<int>{2,3,4}};
     matrice1.at(1) = Vecteur<int> {vector<int>{1,5,2}};
-    matrice1.at(2) = Vecteur<int> {vector<int>{1,2,4}};
+    matrice1.at(2) = Vecteur<int> {vector<int>{1,2,3}};
     cout << matrice1 << endl;
 
     cout << "Matrice vide ? " << boolalpha << matrice1.estVide() << noboolalpha << endl;
@@ -108,6 +107,10 @@ int main() {
     cout << matrice1.sommeDiagonaleGD() << endl;
 
     cout << matrice1.sommeDiagonaleDG() << endl;
+
+    cout << (matrice1 * 3) << endl;
+    cout << (matrice1 * matrice1) << endl;
+    cout << (matrice1 + matrice1) << endl;
 
 
     return 0;
