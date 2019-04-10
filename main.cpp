@@ -89,10 +89,10 @@ int main() {
     matrice1.resize(6);
     cout << matrice1 << endl;
 
-    matrice1.resize(3, 0);
+    matrice1.resize(3, 3);
     matrice1.at(0) = Vecteur<int> {vector<int>{2,3,4}};
     matrice1.at(1) = Vecteur<int> {vector<int>{1,5,2}};
-    matrice1.at(2) = Vecteur<int> {vector<int>{-4,-8,6}};
+    matrice1.at(2) = Vecteur<int> {vector<int>{1,2,4}};
     cout << matrice1 << endl;
 
     cout << "Matrice vide ? " << boolalpha << matrice1.estVide() << noboolalpha << endl;

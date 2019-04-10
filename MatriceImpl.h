@@ -16,6 +16,10 @@ Matrice<T>::Matrice(size_t rows):buffer(Vecteur<Vecteur<T>>(rows)) {}
 
 template<typename T>
 Matrice<T>::Matrice(size_t rows, size_t columns):buffer(Vecteur<Vecteur<T>>(rows)) {
+    if((rows == 0) and (columns > rows)){
+        throw Exception_invalid_argument("Matrice : If rows size is 0, the columns size can't be greater than 0");
+    }
+
     try {
         // We fill our buffer with empty rows, now we resize all rows with columns nb
         for (size_t i = 0; i < rows; ++i) {
@@ -86,35 +90,16 @@ void Matrice<T>::resize(size_t l, size_t c) {
 
 template<typename T>
 bool Matrice<T>::estVide() const noexcept {
-    bool rowsEmpty = (bool)!this->size();
-    bool columnsEmpty = true;
-
-    for(size_t row = 0; row < this->size(); ++row) {
-        if(this->at(row).size() > 0){
-            columnsEmpty = false;
-        }
-    }
-
-    return (rowsEmpty && columnsEmpty);
+    return (bool)!this->size();
 }
 
 template<typename T>
 bool Matrice<T>::estCarree() const noexcept {
-    bool isSquareMatrix = true;
-    size_t rowsSize = this->size();
-    size_t columnSize = 0;
-
-    if(!this->estVide()) {
-        for (size_t row = 0; row < rowsSize; ++row) {
-            columnSize = this->at(row).size();
-            if(columnSize != rowsSize){
-                isSquareMatrix = false;
-                break;
-            }
-        }
+    if(!estReguliere()){
+        return false;
     }
 
-    return isSquareMatrix;
+    return estVide() or (this->size() == this->at(0).size());
 }
 
 template<typename T>
@@ -122,9 +107,8 @@ bool Matrice<T>::estReguliere() const noexcept {
     bool isRegularMatrix = true;
 
     if(!this->estVide()) {
-        size_t firstRowSize = this->at(0).size();
         for (size_t row = 1; row < this->size(); ++row) {
-            if(firstRowSize != this->at(row).size()){
+            if(this->at(row-1).size() != this->at(row).size()){
                 isRegularMatrix = false;
                 break;
             }
@@ -138,9 +122,6 @@ template<typename T>
 Vecteur<T> Matrice<T>::sommeLigne() const {
     if(this->estVide()) {
         throw Exception_length_error("Matrice : Impossible to sum rows of an empty Matrice");
-    }
-    if(!this->estReguliere()){
-        throw Exception_length_error("Matrice : Impossible to sum rows of an irregular Matrice");
     }
 
     try {
@@ -165,19 +146,13 @@ Vecteur<T> Matrice<T>::sommeColonne() const {
         throw Exception_length_error("Matrice : Impossible to sum columns of an irregular Matrice");
     }
 
-    try {
-
-        Vecteur<T> sum(this->at(0).size());
-        for (size_t row = 0; row < this->size(); ++row) {
-            for(size_t column = 0; column < this->at(row).size(); ++column){
-                sum.at(column) = sum.at(column) + this->at(row).at(column);
-            }
+    Vecteur<T> sum(this->at(0).size());
+    for (size_t row = 0; row < this->size(); ++row) {
+        for(size_t column = 0; column < this->at(row).size(); ++column){
+            sum.at(column) += this->at(row).at(column);
         }
-        return sum;
-
-    }catch(const Exception_length_error& e){
-        throw Exception_length_error("Matrice : Impossible to sum an empty column");
     }
+    return sum;
 }
 
 template<typename T>
