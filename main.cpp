@@ -90,7 +90,7 @@ int main() {
     cout << matrice1 << endl;
 
     matrice1.resize(3, 3);
-    matrice1.at(0) = Vecteur<int> {vector<int>{2,3,4}};
+    matrice1.at(0) = Vecteur<int> {vector<int>{1,3,4}};
     matrice1.at(1) = Vecteur<int> {vector<int>{1,5,2}};
     matrice1.at(2) = Vecteur<int> {vector<int>{1,2,3}};
     cout << matrice1 << endl;
@@ -112,7 +112,5 @@ int main() {
     cout << (matrice1 * 3) << endl;
     cout << (matrice1 * matrice1) << endl;
     cout << (matrice1 + matrice1) << endl;
-
-
     return 0;
 }

@@ -6,7 +6,12 @@
 #define MATRICEIMPL_H
 
 #include "Vecteur.h"
+#include "Exception_out_of_range.h"
+#include "Exception_length_error.h"
 #include "Exception_invalid_argument.h"
+#include "Exception_bad_alloc.h"
+#include "overflowManagement.h"
+
 
 
 
@@ -138,6 +143,8 @@ Vecteur<T> Matrice<T>::sommeLigne() const {
 
     }catch(const Exception_length_error& e){
         throw Exception_length_error("Matrice : Impossible to sum an empty row");
+    }catch(const Exception_overflow_error& e){
+        throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
     }
 }
 
@@ -153,6 +160,9 @@ Vecteur<T> Matrice<T>::sommeColonne() const {
     Vecteur<T> sum(this->at(0).size());
     for (size_t row = 0; row < this->size(); ++row) {
         for(size_t column = 0; column < this->at(row).size(); ++column){
+            if(isAnAddOverflow(sum.at(column), this->at(row).at(column))) {
+                throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
+            }
             sum.at(column) += this->at(row).at(column);
         }
     }
@@ -170,6 +180,9 @@ T Matrice<T>::sommeDiagonaleGD() const {
 
     T sum = this->at(0).at(0);
     for(size_t i = 1; i < this->size(); ++i){
+        if(isAnAddOverflow(sum, this->at(i).at(i))) {
+            throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
+        }
         sum += this->at(i).at(i);
     }
 
@@ -189,6 +202,9 @@ T Matrice<T>::sommeDiagonaleDG() const {
     T sum = this->at(0).at(DIMENSION - 1);
 
     for(size_t row = 1; row < DIMENSION; ++row){
+        if(isAnAddOverflow(sum, this->at(row).at(DIMENSION - row - 1))) {
+            throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
+        }
         sum += this->at(row).at(DIMENSION - row - 1);
     }
 
@@ -206,6 +222,9 @@ Matrice<T> Matrice<T>::operator*(const T& valeur) const {
     Matrice<T> result = *this;
     for(size_t i = 0; i< this->size(); ++i){
         for(size_t j = 0; j < this->at(i).size(); ++j){
+            if(isAMultiplyOverflow(result.at(i).at(j), valeur)) {
+                throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
+            }
             result.at(i).at(j) *= valeur;
         }
     }
@@ -235,7 +254,9 @@ Matrice<T> Matrice<T>::operator*(const Matrice<T>& rhs) const {
         }
 
         for(size_t j = 0; j < this->at(i).size(); ++j){
-
+            if(isAMultiplyOverflow(result.at(i).at(j), rhs.at(i).at(j))) {
+                throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
+            }
             result.at(i).at(j) *= rhs.at(i).at(j);
         }
     }
@@ -266,7 +287,9 @@ Matrice<T> Matrice<T>::operator+(const Matrice<T>& rhs) const {
         }
 
         for(size_t j = 0; j < this->at(i).size(); ++j){
-
+            if(isAnAddOverflow(result.at(i).at(j), rhs.at(i).at(j))) {
+                throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
+            }
             result.at(i).at(j) += rhs.at(i).at(j);
         }
     }
