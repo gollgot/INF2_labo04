@@ -2,8 +2,8 @@
 // Created by loic on 4/6/19.
 //
 
-#ifndef VECTEUREXCEPTION_INVALID_ARGUMENT_H
-#define VECTEUREXCEPTION_INVALID_ARGUMENT_H
+#ifndef EXCEPTION_INVALID_ARGUMENT_H
+#define EXCEPTION_INVALID_ARGUMENT_H
 
 #include <stdexcept>
 #include <string>
@@ -15,4 +15,4 @@ public:
     explicit Exception_invalid_argument(const char* what): invalid_argument(what){};
 };
 
-#endif //VECTEUREXCEPTION_INVALID_ARGUMENT_H
+#endif //EXCEPTION_INVALID_ARGUMENT_H

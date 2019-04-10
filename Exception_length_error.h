@@ -2,8 +2,8 @@
 // Created by loic on 4/6/19.
 //
 
-#ifndef VECTEUREXCEPTION_LENGTH_ERROR_H
-#define VECTEUREXCEPTION_LENGTH_ERROR_H
+#ifndef EXCEPTION_LENGTH_ERROR_H
+#define EXCEPTION_LENGTH_ERROR_H
 
 #include <stdexcept>
 #include <string>
@@ -15,4 +15,4 @@ public:
     explicit Exception_length_error(const char* what): length_error(what){};
 };
 
-#endif //VECTEUREXCEPTION_LENGTH_ERROR_H
+#endif //EXCEPTION_LENGTH_ERROR_H
