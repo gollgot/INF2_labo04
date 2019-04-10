@@ -1,5 +1,5 @@
 //
-// Created by loic on 4/10/19.
+// Created by loic on 4/0/19.
 //
 
 #ifndef OVERFLOWMANAGEMENT_H
@@ -9,18 +9,25 @@
 
 template <typename T>
 bool isAnAddOverflow(const T& lhs, const T& rhs) {
-    return ((lhs >= 0) and (rhs >= 0) and ((lhs + rhs) < 0)) or ((lhs < 0) and (rhs < 0) and ((lhs + rhs) >= 0));
+    T defaultVal = T();
+    return ((lhs >= defaultVal) and (rhs >= defaultVal) and ((lhs + rhs) < defaultVal))
+            or
+            ((lhs < defaultVal) and (rhs < defaultVal) and ((lhs + rhs) >= defaultVal));
 }
 
 template <typename T>
 bool isASubOverflow(const T& lhs, const T& rhs) {
-    return ((lhs >= 0) and (rhs < 0) and ((lhs - rhs) < 0)) or ((lhs < 0) and (rhs >= 0) and ((lhs - rhs) >= 0));
+    T defaultVal = T();
+    return ((lhs >= defaultVal) and (rhs < defaultVal) and ((lhs - rhs) < defaultVal))
+            or
+            ((lhs < defaultVal) and (rhs >= defaultVal) and ((lhs - rhs) >= defaultVal));
 }
 
 template <typename T>
 bool isAMultiplyOverflow(const T& lhs, const T& rhs){
     T intermediateResult = lhs;
-    for(T i = 1; i < rhs; ++i) {
+    T begin = T();
+    for(T i = ++begin; i < rhs; ++i) {
         if(isAnAddOverflow(intermediateResult, lhs)) {
             return true;
         }
