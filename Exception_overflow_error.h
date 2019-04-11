@@ -10,7 +10,15 @@
 class Exception_overflow_error : public std::overflow_error{
 
 public:
+    /**
+     * @brief Constructor with string parameter
+     * @param what The error message
+     */
     explicit Exception_overflow_error(const std::string& what): overflow_error(what){};
+    /**
+     * @brief Constructor with char* parameter
+     * @param what The error message
+     */
     explicit Exception_overflow_error(const char* what): overflow_error(what){};
 };
 

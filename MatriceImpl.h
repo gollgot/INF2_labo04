@@ -15,8 +15,6 @@
 
 
 
-
-
 template<typename T>
 Matrice<T>::Matrice():buffer(Vecteur<Vecteur<T>>(0)) {}
 
@@ -129,10 +127,6 @@ bool Matrice<T>::estReguliere() const noexcept {
 
 template<typename T>
 Vecteur<T> Matrice<T>::sommeLigne() const {
-    if(this->estVide()) {
-        throw Exception_length_error("Matrice : Impossible to sum rows of an empty Matrice");
-    }
-
     try {
 
         Vecteur<T> sum(this->size());

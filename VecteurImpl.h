@@ -78,18 +78,19 @@ T Vecteur<T>::somme() const {
 }
 
 template <typename T>
-Vecteur<T>& Vecteur<T>::operator*(const T& val){
+Vecteur<T> Vecteur<T>::operator*(const T& val){
     if(!this->size())
         throw Exception_length_error("Vecteur : impossible to multiply an empty vecteur with a value");
 
+    Vecteur<T> result = *this;
     for(size_t i = 0; i< this->size(); ++i) {
         if(isAMultiplyOverflow(this->at(i), val)) {
             throw Exception_overflow_error("Vecteur : Overflow detected in the computed result");
         }
-        this->at(i) = this->at(i)*val;
+        result.at(i) *= val;
     }
 
-    return *this;
+    return result;
 }
 
 template <typename T>

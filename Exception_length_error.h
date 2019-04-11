@@ -11,7 +11,15 @@
 class Exception_length_error : public std::length_error{
 
 public:
+    /**
+     * @brief Constructor with string parameter
+     * @param what The error message
+     */
     explicit Exception_length_error(const std::string& what): length_error(what){};
+    /**
+     * @brief Constructor with char* parameter
+     * @param what The error message
+     */
     explicit Exception_length_error(const char* what): length_error(what){};
 };
 

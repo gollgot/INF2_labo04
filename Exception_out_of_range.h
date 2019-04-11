@@ -11,7 +11,15 @@
 class Exception_out_of_range : public std::out_of_range{
 
 public:
+    /**
+     * @brief Constructor with string parameter
+     * @param what The error message
+     */
     explicit Exception_out_of_range(const std::string& what): out_of_range(what){};
+    /**
+     * @brief Constructor with char* parameter
+     * @param what The error message
+     */
     explicit Exception_out_of_range(const char* what): out_of_range(what){};
 };
 
