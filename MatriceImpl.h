@@ -1,6 +1,17 @@
-//
-// Created by loic on 4/4/19.
-//
+/*
+-----------------------------------------------------------------------------------
+Laboratoire : Labo04 - Exceptions
+Fichier     : MatriceImpl.h
+Auteur(s)   : Loic Dessaules, Rosalie Chhen
+Date        : 11.04.2019
+
+But         : Contient toutes les definitions attributs, constructeurs de la classe MatriceImpl
+
+Remarque(s) : Tous les commentaires relatifs aux methodes sont dans le header qui contient les declarations
+
+Compilateur : g++ <8.2.1>
+-----------------------------------------------------------------------------------
+ */
 
 #ifndef MATRICEIMPL_H
 #define MATRICEIMPL_H
@@ -19,23 +30,32 @@ template<typename T>
 Matrice<T>::Matrice():buffer(Vecteur<Vecteur<T>>(0)) {}
 
 template<typename T>
-Matrice<T>::Matrice(size_t rows):buffer(Vecteur<Vecteur<T>>(rows)) {}
+Matrice<T>::Matrice(size_t rows) {
+    try{
+        buffer = Vecteur<Vecteur<T>>(rows);
+    } catch(const Exception_length_error& e) {
+        throw Exception_length_error("Matrice : size can't be greater than the maximum number of elements the rows can hold\n" + std::string(e.what()));
+    } catch(const Exception_bad_alloc& e) {
+        throw Exception_bad_alloc("Matrice : Impossible to allocate the memory ask\n" + std::string(e._what()));
+    }
+}
 
 template<typename T>
-Matrice<T>::Matrice(size_t rows, size_t columns):buffer(Vecteur<Vecteur<T>>(rows)) {
+Matrice<T>::Matrice(size_t rows, size_t columns){
     if((rows == 0) and (columns > rows)){
         throw Exception_invalid_argument("Matrice : If rows size is 0, the columns size can't be greater than 0");
     }
 
     try {
+        buffer = Vecteur<Vecteur<T>>(rows);
         // We fill our buffer with empty rows, now we resize all rows with columns nb
         for (size_t i = 0; i < rows; ++i) {
             this->at(i).resize(columns);
         }
     }catch(const Exception_length_error& e){
-        throw Exception_length_error("Matrice : size can't be greater than the maximum number of elements the row can hold");
+        throw Exception_length_error("Matrice : size can't be greater than the maximum number of elements the row can hold\n" + std::string(e.what()));
     }catch(const Exception_bad_alloc& e){
-        throw Exception_bad_alloc("Matrice : Impossible to allocate the memory ask");
+        throw Exception_bad_alloc("Matrice : Impossible to allocate the memory ask\n" + std::string(e._what()));
     }
 }
 

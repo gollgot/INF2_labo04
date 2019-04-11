@@ -1,7 +1,17 @@
-//
-// Created by loic on 4/2/19.
-//
+/*
+-----------------------------------------------------------------------------------
+Laboratoire : Labo04 - Exceptions
+Fichier     : Vecteur.h
+Auteur(s)   : Loic Dessaules, Rosalie Chhen
+Date        : 11.04.2019
 
+But         : Contient toutes les declarations attributs, constructeurs de la classe Vecteur
+
+Remarque(s) : -
+
+Compilateur : g++ <8.2.1>
+-----------------------------------------------------------------------------------
+ */
 #ifndef VECTEUR_H
 #define VECTEUR_H
 
@@ -47,12 +57,16 @@ public:
     /**
      * @brief Constructor to create a Vecteur with size of n
      * @param n The Vecteur size
+     * @throws Exception_length_error is thrown if "size" is greater than the maximum number of elements the Vecteur can hold
+     * @throws Exception_bad_alloc is thrown if this is impossible to allocate the asked memory
      */
     Vecteur(size_t n);
 
     /**
      * @brief Consructor to create a Vecteur from a specific vector
      * @param vector The Vecteur data
+     * @throws Exception_length_error is thrown if "size" is greater than the maximum number of elements the Vecteur can hold
+     * @throws Exception_bad_alloc is thrown if this is impossible to allocate the asked memory
      */
     Vecteur(const std::vector<T>& vector);
 

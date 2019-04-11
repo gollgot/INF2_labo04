@@ -1,6 +1,17 @@
-//
-// Created by loic on 4/4/19.
-//
+/*
+-----------------------------------------------------------------------------------
+Laboratoire : Labo04 - Exceptions
+Fichier     : Matrice.h
+Auteur(s)   : Loic Dessaules, Rosalie Chhen
+Date        : 11.04.2019
+
+But         : Contient toutes les déclarations attributs, constructeurs de la classe Matrice
+
+Remarque(s) : -
+
+Compilateur : g++ <8.2.1>
+-----------------------------------------------------------------------------------
+ */
 
 #ifndef MATRICE_H
 #define MATRICE_H
@@ -42,6 +53,8 @@ public:
     /**
      * @brief Constructor to create a Matrice of n rows
      * @param rows The number of rows we want
+     * @throws Exception_length_error Is thrown if the row size is greater than the max elements a Vecteur can contains
+     * @throws Exception_bad_alloc Is thrown if this is impossible to allocate the asked memory
      */
     Matrice(size_t rows);
 

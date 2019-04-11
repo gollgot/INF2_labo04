@@ -1,6 +1,17 @@
-//
-// Created by loic on 4/2/19.
-//
+/*
+-----------------------------------------------------------------------------------
+Laboratoire : Labo04 - Exceptions
+Fichier     : VecteurImpl.h
+Auteur(s)   : Loic Dessaules, Rosalie Chhen
+Date        : 11.04.2019
+
+But         : Contient toutes les definitions attributs, constructeurs de la classe VecteurImpl
+
+Remarque(s) : Tous les commentaires relatifs aux methodes sont dans le header qui contient les declarations
+
+Compilateur : g++ <8.2.1>
+-----------------------------------------------------------------------------------
+ */
 
 #ifndef VECTEURIMPL_H
 #define VECTEURIMPL_H
@@ -18,10 +29,26 @@ template <typename T>
 Vecteur<T>::Vecteur() : data(std::vector<T>(0)) {}
 
 template <typename T>
-Vecteur<T>::Vecteur(size_t n) : data(std::vector<T>(n)) {}
+Vecteur<T>::Vecteur(size_t n) {
+    try{
+        data = std::vector<T>(n);
+    } catch(const std::length_error& e) {
+        throw Exception_length_error("Vecteur : size can't be greater than the maximum number of elements the vecteur can hold");
+    } catch(const std::bad_alloc& e) {
+        throw Exception_bad_alloc("Vecteur : Impossible to allocate the memory ask");
+    }
+}
 
 template <typename T>
-Vecteur<T>::Vecteur(const std::vector<T>& vector) : data(vector) {}
+Vecteur<T>::Vecteur(const std::vector<T>& vector){
+    try{
+        data = vector;
+    } catch(const std::length_error& e) {
+        throw Exception_length_error("Vecteur : size can't be greater than the maximum number of elements the vecteur can hold");
+    } catch(const std::bad_alloc& e) {
+        throw Exception_bad_alloc("Vecteur : Impossible to allocate the memory ask");
+    }
+}
 
 
 template <typename T>

@@ -1,7 +1,17 @@
-//
-// Created by loic on 4/9/19.
-//
+/*
+-----------------------------------------------------------------------------------
+Laboratoire : Labo04 - Exceptions
+Fichier     : Exception_bad_alloc.h
+Auteur(s)   : Loic Dessaules, Rosalie Chhen
+Date        : 11.04.2019
 
+But         : Contient toutes les déclarations / definitions de metodes, attributs, constructeurs de la classe Exception_bad_alloc
+
+Remarque(s) : -
+
+Compilateur : g++ <8.2.1>
+-----------------------------------------------------------------------------------
+ */
 #ifndef EXCEPTION_BAD_ALLOC_H
 #define EXCEPTION_BAD_ALLOC_H
 
