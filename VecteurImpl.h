@@ -24,7 +24,6 @@ template <typename T>
 Vecteur<T>::Vecteur(const std::vector<T>& vector) : data(vector) {}
 
 
-
 template <typename T>
 T Vecteur<T>::at(size_t n) const {
     try {

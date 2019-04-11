@@ -61,7 +61,7 @@ public:
      * @param n Position of an element in the Vecteur. Notice that the first element has a position of 0 (not 1).
      * @throws Exception_out_of_range is throw if n is greater than, or equal to, the Vecteur size
      *
-     * @return The element at the specified position in the container.
+     * @return The element at the specified position in the Vecteur.
      */
     T at(size_t n) const;
 
@@ -123,7 +123,7 @@ public:
     Vecteur<T> operator*(const T& val);
 
     /**
-     * @brief Multiply two Vecteurs value by value (Hadamard product)
+     * @brief Multiply two Vecteurs value by value
      * @param rhs The right Vecteur
      * @throws Exception_length_error is thrown if we try to multiply an empty Vecteur with an other Vecteur
      * @throws Exception_invalid_argument is thrown if we try to multiply Vecteurs of different size.

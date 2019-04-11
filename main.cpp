@@ -369,7 +369,7 @@ int main() {
 
     */
 
-    //testVecteur();
-    testMatrice();
+    testVecteur();
+    //testMatrice();
     return 0;
 }

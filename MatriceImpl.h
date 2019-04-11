@@ -32,8 +32,10 @@ Matrice<T>::Matrice(size_t rows, size_t columns):buffer(Vecteur<Vecteur<T>>(rows
         for (size_t i = 0; i < rows; ++i) {
             this->at(i).resize(columns);
         }
-    }catch(const Exception_invalid_argument& e){
-        throw Exception_invalid_argument("Matrice : Impossible to create a matrice with negative column size");
+    }catch(const Exception_length_error& e){
+        throw Exception_length_error("Matrice : size can't be greater than the maximum number of elements the row can hold");
+    }catch(const Exception_bad_alloc& e){
+        throw Exception_bad_alloc("Matrice : Impossible to allocate the memory ask");
     }
 }
 
