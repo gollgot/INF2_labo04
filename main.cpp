@@ -148,7 +148,10 @@ void testMatrice(){
     mOverflow.at(1) = mOverflowRow1;
     cout << "mOverflow = " << mOverflow << endl;
 
-
+    Matrice<int> mToResize(1,2);
+    Vecteur<int> mToResizeRow0{vector<int>{1,2}};
+    m2x2.at(0) = mToResizeRow0;
+    cout << "mToResize = " << mToResize << endl;
 
 
     cout << endl << "----- Test of Matrice methods" << endl;
@@ -172,13 +175,13 @@ void testMatrice(){
 
     cout << "Size of mTest (Nb of rows) : " << mTest.size() << endl;
 
-    mTest.resize(4);
+    mTest.resize(3);
     cout << "After resizing mTest from 2 rows to 3 : " << mTest << endl;
     //vTest.resize(-2);
     //^ Exception: resizing with a negative value
-    mTest.resize(4, 4);
-    cout << "After resizing mTest from 3 columns to 4 : " << mTest << endl;
-    //mTest.resize(3, -2);
+    mToResize.resize(2, 5);
+    cout << "After resizing mToResize from 2 columns to 5 : " << mTest << endl;
+    //mToResize.resize(4, -2);
     //^ Exception: resizing with a negative value
     cout << endl;
 
@@ -208,7 +211,7 @@ void testMatrice(){
     cout << "Somme of each columns in mReguliere : " << mReguliere.sommeColonne() << endl;
     //mEmpty.sommeColonne();
     //^ Exception: can not sum columns of an empty matrice
-    //cout << mTest.sommeColonne() << endl;
+    //mTest.sommeColonne();
     //^ Exception: can not sum columns of a not Reguliere matrice
     //mOverflow.sommeColonne();
     //^ Exception: overflow
