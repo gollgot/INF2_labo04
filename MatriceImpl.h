@@ -215,11 +215,10 @@ Matrice<T> Matrice<T>::operator*(const T& valeur) const {
 
     Matrice<T> result = *this;
     for(size_t i = 0; i< this->size(); ++i){
-        for(size_t j = 0; j < this->at(i).size(); ++j){
-            if(isAMultiplyOverflow(result.at(i).at(j), valeur)) {
-                throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
-            }
-            result.at(i).at(j) *= valeur;
+        try {
+            result.at(i) = result.at(i) * valeur;
+        } catch (const Exception_overflow_error& e) {
+            throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
         }
     }
 
@@ -247,11 +246,10 @@ Matrice<T> Matrice<T>::operator*(const Matrice<T>& rhs) const {
             throw Exception_invalid_argument("Matrice : each rows of matrices being multiplied must have the same number of elements (columns)");
         }
 
-        for(size_t j = 0; j < this->at(i).size(); ++j){
-            if(isAMultiplyOverflow(result.at(i).at(j), rhs.at(i).at(j))) {
-                throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
-            }
-            result.at(i).at(j) *= rhs.at(i).at(j);
+        try {
+            result.at(i) = result.at(i) * rhs.at(i);
+        } catch (const Exception_overflow_error& e) {
+            throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
         }
     }
 
@@ -280,12 +278,12 @@ Matrice<T> Matrice<T>::operator+(const Matrice<T>& rhs) const {
             throw Exception_invalid_argument("Matrice : each rows of matrices being added must have the same number of elements (columns)");
         }
 
-        for(size_t j = 0; j < this->at(i).size(); ++j){
-            if(isAnAddOverflow(result.at(i).at(j), rhs.at(i).at(j))) {
-                throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
-            }
-            result.at(i).at(j) += rhs.at(i).at(j);
+        try {
+            result.at(i) = result.at(i) + rhs.at(i);
+        } catch (const Exception_overflow_error& e) {
+            throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
         }
+
     }
 
 
