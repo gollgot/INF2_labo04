@@ -42,23 +42,19 @@ void testVecteur(){
 
     cout << "Read vTest at position 0 : " << vTest.at(0) << endl;
     //vTest.at(10);
-    //^ Exception: read at position 10
 
     vTest.at(2) = 4;
     cout << "After writing 4 in vTest at position 2 : " << vTest << endl;
     //vTest.at(10) = 4;
-    // ^ Exception: writing 4 at position 10
 
     cout << "Size of vTest : " << vTest.size() << endl;
 
     vTest.resize(4);
     cout << "After resizing vTest from 3 to 4 : " << vTest << endl;
     //vTest.resize(-2);
-    //^ Exception: resizing from 4 to -2
 
     cout << "Somme of elements in vTest : " << vTest.somme() << endl;
     //vOverflow.somme();
-    //^ Exception: somme of vOverflow is greater than numeric_limits<int>::max()
 
     cout << "vTest * 2 : " << vTest*2 << endl;
     //vEmpty*2;
@@ -68,27 +64,18 @@ void testVecteur(){
 
     cout << "vTest * vTest : " << vTest*vTest << endl;
     //vTest*vEmpty;
-    //^ Exception: multiplying an empty Vecteur and another Vecteur
     //vTest*vDiffSize;
-    //^ Exception: multiplying Vecteurs of different size
     //vTest*vOverflow;
-    //^ Exception: overflow
 
     cout << "vTest + vTest : " << vTest+vTest << endl;
     //vTest+vEmpty;
-    //^ Exception: adding an empty Vecteur and another Vecteur
     //vTest+vDiffSize;
-    //^ Exception: adding Vecteurs of different size
     //vTest+vOverflow;
-    //^ Exception: overflow
 
     cout << "vTest - vTest : " << vTest-vTest << endl;
     //vTest-vEmpty;
-    //^ Exception: subtracting an empty Vecteur and another Vecteur
     //vTest-vDiffSize;
-    //^ Exception: subtracting Vecteurs of different size
     //(vOverflow*(-1))-vTest;
-    //^ Exception: overflow
 
 }
 
@@ -105,11 +92,8 @@ void testMatrice(){
     Matrice<int> rowsColumnsMatrice(2, 3);
     cout << "Constructor with rows and columns parameters : " << rowsColumnsMatrice << endl;
     //Matrice<int> row0ColumnsMatrice(0, 3);
-    //^ Exception: if the matrice has 0 row, it can't have any columns
     //Matrice<int> negativeRowColumnsMatrice(-2, 3);
-    //^ Exception: with negative rows -> bad alloc
     //Matrice<int> rowNegativeColumnsMatrice(2, -3);
-    //^ Exception: with negative columns -> erro length
 
     cout << endl << "---- Instanciation of Matrices to test" << endl;
 
@@ -158,31 +142,25 @@ void testMatrice(){
 
     cout << "Read mTest at row 0 : " << mTest.at(0) << endl;
     //mTest.at(10);
-    //^ Exception: read at row 10
     cout << "Read mTest at row 0, column 1 : " << mTest.at(0).at(1) << endl;
     //mTest.at(0).at(10);
-    //^ Exception: read at row 0, column 10
 
     Vecteur<int> mTestRow1{vector<int>{4,5,6}};
     mTest.at(1) = mTestRow1;
     cout << "After writing [4, 5, 6] in mTest at row 1 : " << mTest << endl;
     //mTest.at(10) = mTestRow1;
-    //^ Exception: writing [4, 5, 6] in mTest at row 10
     mTest.at(1).at(2) = 7;
     cout << "After writing 7 in mTest at row 1, column 2 : " << mTest << endl;
     //mTest.at(1).at(10) = 7;
-    //^ Exception: writing 7 in mTest at row 1, column 10
 
     cout << "Size of mTest (Nb of rows) : " << mTest.size() << endl;
 
     mTest.resize(3);
     cout << "After resizing mTest from 2 rows to 3 : " << mTest << endl;
     //vTest.resize(-2);
-    //^ Exception: resizing with a negative value
     mToResize.resize(2, 5);
     cout << "After resizing mToResize from 2 columns to 5 : " << mTest << endl;
     //mToResize.resize(4, -2);
-    //^ Exception: resizing with a negative value
     cout << endl;
 
     cout << "mTest is vide? " << boolalpha << mTest.estVide() << endl;
@@ -202,42 +180,28 @@ void testMatrice(){
 
     cout << "Somme of each rows in mReguliere : " << mReguliere.sommeLigne() << endl;
     //mEmpty.sommeLigne();
-    //^ Exception: can not sum rows of an empty matrice
     //mTest.sommeLigne();
-    //^ Exception: can not sum rows of any empty matrice
     //mOverflow.sommeLigne();
-    //^ Exception: overflow
 
     cout << "Somme of each columns in mReguliere : " << mReguliere.sommeColonne() << endl;
     //mEmpty.sommeColonne();
-    //^ Exception: can not sum columns of an empty matrice
     //mTest.sommeColonne();
-    //^ Exception: can not sum columns of a not Reguliere matrice
     //mOverflow.sommeColonne();
-    //^ Exception: overflow
 
     cout << "Somme of diagonal left to right in m2x2 : " << m2x2.sommeDiagonaleGD() << endl;
     //mEmpty.sommeDiagonaleGD();
-    //^ Exception: can not sum diagonale of an empty matrice
     //mTest.sommeDiagonaleGD();
-    //^ Exception: can not sum diagonale of a not carree matrice
     //mOverflow.sommeDiagonaleGD();
-    //^ Exception: overflow
 
     cout << "Somme of diagonal right to left in m2x2 : " << m2x2.sommeDiagonaleDG() << endl;
     //mEmpty.sommeDiagonaleDG();
-    //^ Exception: can not sum diagonale of an empty matrice
     //mTest.sommeDiagonaleDG();
-    //^ Exception: can not sum diagonale of a not carree matrice
     //mOverflow.sommeDiagonaleDG();
-    //^ Exception: overflow
     cout << endl;
 
     cout << "mReguliere * 2 : " << mReguliere*2 << endl;
     //mEmpty*2;
-    //^ Exception: can not multiply an empty Matrice
     //mOverflow*2;
-    //^ Exception: overflow
     cout << endl;
 
     // resizing mTest to test arithmetic operations between Matrices
@@ -249,23 +213,15 @@ void testMatrice(){
 
     cout << "lhs*rhs = " << mTest*mReguliere << endl;
     //mTest*mEmpty;
-    //^ Exception : can not multiply a Matrice with an empty one
     //mTest*m1x3;
-    //^ Exception: not the same nb of rows
     //mTest*m2x2;
-    //^ Exception: not the same nb of elements in rows
     //m2x2*mOverflow;
-    //^ Exception: overflow
 
     cout << "lhs+rhs = " << mTest+mReguliere << endl;
     //mTest+mEmpty;
-    //^ Exception : can not multiply a Matrice with an empty one
     //mTest+m1x3;
-    //^ Exception: not the same nb of rows
     //mTest+m2x2;
-    //^ Exception: not the same nb of elements in rows
     //m2x2+mOverflow;
-    //^ Exception: overflow
 
 }
 
