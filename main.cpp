@@ -1,4 +1,17 @@
+/*
+-----------------------------------------------------------------------------------
+Laboratoire : Labo04 - Exceptions
+Fichier     : main.cpp
+Auteur(s)   : Loic Dessaules, Rosalie Chhen
+Date        : 11.04.2019
 
+But         : Creation des classes Vecteurs et Matrices, en implementant les exceptions et la genericite.
+
+Remarque(s) : -
+
+Compilateur : g++ <8.2.1>
+-----------------------------------------------------------------------------------
+ */
 
 #include <iostream>
 #include <limits>
