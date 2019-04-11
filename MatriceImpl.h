@@ -46,7 +46,7 @@ Vecteur<T> Matrice<T>::at(size_t n) const {
     try {
         return buffer.at(n);
     }catch(const Exception_out_of_range& e) {
-        throw(Exception_out_of_range("Matrice : n is out of range"));
+        throw(Exception_out_of_range("Matrice : n is out of range\n" + std::string(e.what())));
     }
 }
 
@@ -55,7 +55,7 @@ Vecteur<T>& Matrice<T>::at(size_t n) {
     try {
         return buffer.at(n);
     }catch(const Exception_out_of_range& e) {
-        throw(Exception_out_of_range("Matrice : n is out of range"));
+        throw(Exception_out_of_range("Matrice : n is out of range\n" + std::string(e.what())));
     }
 }
 
@@ -69,10 +69,10 @@ void Matrice<T>::resize(size_t l) {
     try {
         // Resize rows
         buffer.resize(l);
-    } catch(const std::length_error& e) {
-        throw Exception_length_error("Matrice : size can't be greater than the maximum number of elements the vecteur can hold");
-    } catch(const std::bad_alloc& e) {
-        throw Exception_bad_alloc("Matrice : Impossible to allocate the memory ask");
+    } catch(const Exception_length_error& e) {
+        throw Exception_length_error("Matrice : size can't be greater than the maximum number of elements the vecteur can hold\n" + std::string(e.what()));
+    } catch(const Exception_bad_alloc& e) {
+        throw Exception_bad_alloc("Matrice : Impossible to allocate the memory ask\n" + std::string(e.what()));
     }
 }
 
@@ -90,10 +90,10 @@ void Matrice<T>::resize(size_t l, size_t c) {
         for(size_t row = 0; row < this->size(); ++row){
             this->at(row).resize(c);
         }
-    } catch(const std::length_error& e) {
-        throw Exception_length_error("Matrice : size can't be greater than the maximum number of elements the vecteur can hold");
-    } catch(const std::bad_alloc& e) {
-        throw Exception_bad_alloc("Matrice : Impossible to allocate the memory ask");
+    } catch(const Exception_length_error& e) {
+        throw Exception_length_error("Matrice : size can't be greater than the maximum number of elements the vecteur can hold\n" + std::string(e.what()));
+    } catch(const Exception_bad_alloc& e) {
+        throw Exception_bad_alloc("Matrice : Impossible to allocate the memory ask\n" + std::string(e.what()));
     }
 }
 
@@ -138,9 +138,9 @@ Vecteur<T> Matrice<T>::sommeLigne() const {
         return sum;
 
     }catch(const Exception_length_error& e){
-        throw Exception_length_error("Matrice : Impossible to sum an empty row");
+        throw Exception_length_error("Matrice : Impossible to sum an empty row\n" + std::string(e.what()));
     }catch(const Exception_overflow_error& e){
-        throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
+        throw Exception_overflow_error("Matrice : Overflow detected in the computed result\n" + std::string(e.what()));
     }
 }
 
@@ -149,9 +149,11 @@ Vecteur<T> Matrice<T>::sommeColonne() const {
     if(this->estVide()) {
         throw Exception_length_error("Matrice : Impossible to sum columns of an empty Matrice");
     }
+
     if(!this->estReguliere()){
         throw Exception_length_error("Matrice : Impossible to sum columns of an irregular Matrice");
     }
+
 
     Vecteur<T> sum(this->at(0).size());
     for (size_t row = 0; row < this->size(); ++row) {
@@ -220,7 +222,7 @@ Matrice<T> Matrice<T>::operator*(const T& valeur) const {
         try {
             result.at(i) = result.at(i) * valeur;
         } catch (const Exception_overflow_error& e) {
-            throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
+            throw Exception_overflow_error("Matrice : Overflow detected in the computed result\n" + std::string(e.what()));
         }
     }
 
@@ -251,7 +253,7 @@ Matrice<T> Matrice<T>::operator*(const Matrice<T>& rhs) const {
         try {
             result.at(i) = result.at(i) * rhs.at(i);
         } catch (const Exception_overflow_error& e) {
-            throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
+            throw Exception_overflow_error("Matrice : Overflow detected in the computed result\n" + std::string(e.what()));
         }
     }
 
@@ -283,7 +285,7 @@ Matrice<T> Matrice<T>::operator+(const Matrice<T>& rhs) const {
         try {
             result.at(i) = result.at(i) + rhs.at(i);
         } catch (const Exception_overflow_error& e) {
-            throw Exception_overflow_error("Matrice : Overflow detected in the computed result");
+            throw Exception_overflow_error("Matrice : Overflow detected in the computed result\n" + std::string(e.what()));
         }
 
     }

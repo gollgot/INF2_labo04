@@ -186,9 +186,13 @@ void testMatrice(){
 
     cout << "Size of mTest (Nb of rows) : " << mTest.size() << endl;
 
-    mTest.resize(3);
+    mTest.resize(4);
     cout << "After resizing mTest from 2 rows to 3 : " << mTest << endl;
     //vTest.resize(-2);
+    //^ Exception: resizing with a negative value
+    mTest.resize(4, 4);
+    cout << "After resizing mTest from 3 columns to 4 : " << mTest << endl;
+    //mTest.resize(3, -2);
     //^ Exception: resizing with a negative value
     cout << endl;
 
@@ -218,7 +222,7 @@ void testMatrice(){
     cout << "Somme of each columns in mReguliere : " << mReguliere.sommeColonne() << endl;
     //mEmpty.sommeColonne();
     //^ Exception: can not sum columns of an empty matrice
-    //mTest.sommeColonne();
+    //cout << mTest.sommeColonne() << endl;
     //^ Exception: can not sum columns of a not Reguliere matrice
     //mOverflow.sommeColonne();
     //^ Exception: overflow
@@ -242,15 +246,17 @@ void testMatrice(){
 
     cout << "mReguliere * 2 : " << mReguliere*2 << endl;
     //mEmpty*2;
-    //^ Excpetion: can not multiply an empty Matrice
+    //^ Exception: can not multiply an empty Matrice
     //mOverflow*2;
     //^ Exception: overflow
     cout << endl;
 
     // resizing mTest to test arithmetic operations between Matrices
-    mTest.resize(2);
+    mTest.resize(2, 3);
     cout << "Matrice lhs (mTest): " << mTest << endl;
     cout << "Matrice rhs (mReguliere): " << mReguliere << endl;
+
+
 
     cout << "lhs*rhs = " << mTest*mReguliere << endl;
     //mTest*mEmpty;
